@@ -16,52 +16,27 @@ jobs:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
         django: ["3.2", "4.0", "4.1", "4.2", "main"]
-        include:
+        exclude:
           - python-version: "3.11"
-            django: "main"
+            django: "4.0"
           - python-version: "3.11"
-            django: "4.2"
-          - python-version: "3.11"
-            django: "4.1"
+            django: "3.2"
 
-          - python-version: "3.10"
+          - python-version: "3.9"
             django: main
-          - python-version: "3.10"
-            django: "4.2"
-          - python-version: "3.10"
-            django: "4.1"
-          - python-version: "3.10"
-            django: "4.0"
-          - python-version: "3.10"
-            django: "3.2"
-
-          - python-version: "3.9"
-            django: "4.2"
-          - python-version: "3.9"
-            django: "4.1"
-          - python-version: "3.9"
-            django: "4.0"
-          - python-version: "3.9"
-            django: "3.2"
 
           - python-version: "3.8"
-            django: "4.2"
-          - python-version: "3.8"
-            django: "4.1"
-          - python-version: "3.8"
-            django: "4.0"
-          - python-version: "3.8"
-            django: "3.2"
+            django: main
 
     services:
       mariadb:
-        image: mariadb:10.2
+        image: mariadb:latest
         env:
           MYSQL_ROOT_PASSWORD: mariadb
         ports:
           - 3306:3306
       postgres:
-        image: postgres:12-alpine
+        image: postgres:latest
         env:
           POSTGRES_PASSWORD: postgres
         options: >-
